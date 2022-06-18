@@ -1,19 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>hello world</h1>
+    <div>{{ couter }}</div>
+    <button @click="handeClick">click me</button>
+    <div>{{ getCouter }}</div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { mapState, mapGetters } from "vuex";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: {},
+  computed: {
+    ...mapState({
+      couter: (state) => state.couter,
+    }),
+    ...mapGetters(["getCouter"]),
+  },
+
+  methods: {
+    handeClick() {
+      this.$store.dispatch("increte");
+    },
+  },
+};
 </script>
 
 <style>
